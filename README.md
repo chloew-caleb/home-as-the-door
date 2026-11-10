@@ -75,6 +75,19 @@
 
 把入口地址和你那套凭据填进客户端。连上以后随便打开一个查 IP 的网站，显示的应该是**你家宽带的 IP**，类型是家庭宽带。
 
+## 从哪里上手
+
+不知道先动哪一步的话，照这个顺序，一步通了再走下一步：
+
+1. 家里那台机器装好系统，能用 SSH 密钥登进去。
+2. 家里那台和你的电脑都装上 Tailscale，互相 ping 得通。
+3. 家里那台跑起 sing-box（`configs/home.json.example` + `scripts/sing-box-home.service`）。在你电脑上用它当 SOCKS 代理试一下，查到的 IP 是家里的，这一段就通了。
+4. 开入口 VPS，装 Tailscale 和 sing-box（`configs/entry.json.example`）。
+5. 把凭据填进 `scripts/creds.example.json` 的副本，用 `scripts/make_links.py` 生成每个人的链接和二维码。
+6. 手机扫码，关掉 Wi-Fi 用流量测一次：查 IP 的网站显示你家的宽带，就全通了。
+
+卡在哪一步，就只查那一步，别从头怀疑。
+
 ## 我们踩过的坑
 
 - **入口别和你别的服务放同一台机器**。入口是最容易出问题的一环，别让它连累别的服务。单独开一台最便宜的，不行了就删掉重开。

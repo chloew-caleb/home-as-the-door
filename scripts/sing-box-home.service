@@ -1,0 +1,14 @@
+# /etc/systemd/system/sing-box.service on the home box.
+# Starts after Tailscale so the SOCKS inbound can bind to the tailnet address.
+[Unit]
+Description=sing-box (home exit)
+After=network-online.target tailscaled.service
+Wants=network-online.target tailscaled.service
+
+[Service]
+ExecStart=/usr/local/bin/sing-box run -c /etc/sing-box/config.json
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
