@@ -1,0 +1,47 @@
+{
+  "log": { "level": "warn" },
+  "inbounds": [
+    {
+      "type": "vless",
+      "tag": "reality-in",
+      "listen": "::",
+      "listen_port": 443,
+      "users": [ { "name": "person-1", "uuid": "UUID_1", "flow": "xtls-rprx-vision" } ],
+      "tls": {
+        "enabled": true,
+        "server_name": "HANDSHAKE_SITE",
+        "reality": {
+          "enabled": true,
+          "handshake": { "server": "HANDSHAKE_SITE", "server_port": 443 },
+          "private_key": "REALITY_PRIVATE_KEY",
+          "short_id": [ "SHORT_ID" ]
+        }
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "hy2-in",
+      "listen": "::",
+      "listen_port": 32443,
+      "obfs": { "type": "salamander", "password": "OBFS_PASSWORD" },
+      "users": [ { "name": "person-1", "password": "HY2_PASSWORD_1" } ],
+      "tls": { "enabled": true, "certificate_path": "/etc/sing-box/hy2.crt", "key_path": "/etc/sing-box/hy2.key" }
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "socks",
+      "tag": "home",
+      "server": "HOME_TS_IP",
+      "server_port": 1080,
+      "version": "5",
+      "username": "CHANGE_ME",
+      "password": "CHANGE_ME_LONG_RANDOM"
+    },
+    { "type": "block", "tag": "block" }
+  ],
+  "route": {
+    "rules": [ { "ip_is_private": true, "outbound": "block" } ],
+    "final": "home"
+  }
+}

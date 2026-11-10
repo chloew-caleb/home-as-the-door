@@ -1,0 +1,13 @@
+{
+  "log": { "level": "warn" },
+  "inbounds": [
+    {
+      "type": "socks",
+      "tag": "from-entry",
+      "listen": "HOME_TS_IP",
+      "listen_port": 1080,
+      "users": [ { "username": "CHANGE_ME", "password": "CHANGE_ME_LONG_RANDOM" } ]
+    }
+  ],
+  "outbounds": [ { "type": "direct", "tag": "home" } ]
+}
