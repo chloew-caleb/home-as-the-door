@@ -1,0 +1,9 @@
+{
+  "entry_host": "ENTRY_PUBLIC_IP_OR_DOMAIN",
+  "reality": { "sni": "HANDSHAKE_SITE", "public_key": "REALITY_PUBLIC_KEY", "short_id": "SHORT_ID" },
+  "hy2": { "port": 32443, "obfs_password": "OBFS_PASSWORD" },
+  "users": {
+    "person-1": { "uuid": "UUID_1", "hy2": "HY2_PASSWORD_1" },
+    "person-2": { "uuid": "UUID_2", "hy2": "HY2_PASSWORD_2" }
+  }
+}

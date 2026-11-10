@@ -1,2 +1,5 @@
 *.json
 !configs/*.json.example
+!scripts/creds.example.json
+out/
+*.png
